@@ -141,4 +141,115 @@ describe('Shopping List', function() {
         res.should.have.status(204);
       });
   });
+
 });
+
+
+// tests for recipes
+describe('Recipes', function() {
+  before(function(){
+      return runServer();
+    });
+    after(function(){
+      return closeServer();
+    });
+
+  it('Should list recipes on get', function() {
+    return chai.request(app)
+      .get('/recipes')
+      .then(function(res) {
+        res.should.have.status(200);
+        res.should.be.json;
+        res.body.should.be.a('array');
+        res.body.length.should.be.at.least(1);
+
+        const expectedKeys = ['id', 'name', 'ingredients'];
+        res.body.forEach(function(item) {
+          item.should.be.a('object');
+          item.should.include.keys(expectedKeys);
+        });
+      });
+  });
+
+  it('Should add item on post', function() {
+    const newItem = {name: 'vegantacos', ingredients: ['beans', 'avos', 'otherstuff']};
+    return chai.request(app)
+      .post('/recipes')
+      .send(newItem)
+      .then(function(res){
+        res.should.have.status(201);
+        res.should.be.json;
+        res.body.should.be.a('object');
+        res.body.should.include.keys('id', 'name', 'ingredients');
+        res.body.id.should.not.be.null;
+        res.body.ingredients.should.be.a('array');
+        res.body.should.deep.equal(
+          Object.assign(newItem, {id: res.body.id})
+        );
+      });
+  });
+
+
+  it('Should update item on put', function() {
+
+    const updatedItem = {
+      name: 'Stinky horrible tacos',
+      ingredients: ['meat', 'cheese']
+    }
+    
+    // Get an item to update
+    return chai.request(app)
+      .get('/recipes')
+      .then( function(res) {
+        updatedItem.id = res.body[0].id;
+        return chai.request(app)
+          .put(`/recipes/${updatedItem.id}`)
+          .send(updatedItem);
+      }).then(function(res) {
+        res.should.have.status(200);
+        res.should.be.json;
+        res.body.should.be.a('object');
+        res.body.should.deep.equal(updatedItem);
+      });
+
+  });
+
+
+  /* can't get this to work 
+  it('Should throw error on put with no name', function() {
+
+    const updatedItem = {
+      ingredients: ['meat', 'cheese'],
+    }
+    
+    return chai.request(app)
+      .get('/recipes')
+      .then( function(res) {
+        
+        updatedItem.id = res.body[0].id;
+        return (function(){
+          chai.request(app)
+          .put(`/recipes/${updatedItem.id}`)
+          .send(updatedItem)
+        }).should.throw(Error);
+
+      });
+
+  });
+
+  */
+
+  it('should delete item on delete', function(){
+    return chai.request(app)
+      .get('/recipes')
+      .then(function(res) {
+        return chai.request(app)
+          .delete(`/recipes/${res.body[0].id}`);
+      }).then(function(res) {
+        res.should.have.status(204);
+      });
+  });
+
+});
+
+
