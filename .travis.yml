@@ -4,6 +4,6 @@ deploy:
   provider: heroku
   api_key:
     secure: Fi0cm6Cq5WGTsIKkmXyqdNczBqcPXSj6eR796uOlXeJmt+RuCARm+xAJwDFVvR+lK50NdrMB91Upw0M95x4D++uOl3F+usWSXA/6N+UCkFd4SAc++UAWEbNJOXcLTmL2uu/H8T69QWevdJV7sQA9t/2NIGNa9BquaJTR35Nfhj4wklfX1rzpmRuZwOWJVkU8uhAMNSwBqbMBEVBplkbudWrbFGHq+2v/yanqOWGolqAGF0g93Inji/dq/3wDJ/FFkizOxPXCbgdKmfkZ3sP77sSuXxH1Rt2UlylTRiuiguzSJmd5qH/kj8RXiRHBJU4ZKKtPBr314LMYhGrzKCZzTptvYzbJK+yM7WSQxMYERBsHYTc8h7l4OphU+tDtTPkOU5U0PMSrmkfVPwXl2X7mBSBQ2lW156Jf+9bvoCL1Aro3hKUwjxXPQN+xfwUUwnLTjL2KzB0GC1GUaHbKuiwM+kTb034744eXOTea4V4hch3Vy5f19ujaSHOXsMh8CA0hqxweiASdos42QKgzFtvNScWez6RY/qCyyO4W6725O9hzV4gBBYSUbVv1XKKLQQ9YW64sLmN9PlolxkZQ2sQ2GRhRl+Zor+7fc1LrnJz1WgIKZEJNFa8tZn77Ar+S/j7lzazBXn9y5jlVDmbBBo79ZOkldNV/a6Gwd1lnXRdmNR4=
-  app: node-shopping-list-integration-tests
+  app: blooming-crag-41461
   on:
     repo: martinseanhunt/node-shopping-list-integration-tests
