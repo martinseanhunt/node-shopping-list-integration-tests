@@ -215,7 +215,6 @@ describe('Recipes', function() {
   });
 
 
-  /* can't get this to work 
   it('Should throw error on put with no name', function() {
 
     const updatedItem = {
@@ -237,7 +236,6 @@ describe('Recipes', function() {
 
   });
 
-  */
 
   it('should delete item on delete', function(){
     return chai.request(app)
